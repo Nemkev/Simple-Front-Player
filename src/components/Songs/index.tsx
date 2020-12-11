@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import { stylePreset } from "../../helpers/modalStyle";
 import Modal from "react-modal";
+import ReactHlsPlayer from "react-hls-player";
 
 import { Overlap, ListItem, SearchList } from "./songs.style";
 
@@ -17,14 +18,15 @@ export const Songs = () => {
       <SearchList>
         {simpleData.map((item: any) => (
           <ListItem>
-            <p>item.name</p>
-            <p>item.author</p>
-            <audio controls>
-              <source
-                src="https://www.coothead.co.uk/audio/You-Cant-Always-Get-What-You-Want.mp3"
-                type="audio/mpeg"
-              />
-            </audio>
+            <p>{item.name}</p>
+            <p>{item.author}</p>
+            <ReactHlsPlayer
+              url='https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
+              autoplay={false}
+              controls={true}
+              width="100%"
+              height="auto"
+/>
           </ListItem>
         ))}
       </SearchList>

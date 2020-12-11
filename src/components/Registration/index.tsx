@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+// import { useMutation, useQuery } from "@apollo/react-hooks";
 import axios from "axios";
 // import { LOGIN } from "../../mutation/LOGIN";
 
@@ -12,9 +13,9 @@ import {
   LoginButton,
   Title,
   ErrorMessage,
-} from "./login.style";
+} from "./registration.style";
 
-export const Login = () => {
+export const Registration = () => {
   const [_, setCookies] = useCookies();
   const [
     {
@@ -33,9 +34,27 @@ export const Login = () => {
     correctEmail: "",
     correctPassword: "",
     errorMessage: "",
-    username:"",
     isLoged: false,
+    username:""
   });
+//   const hello = axios.post("http://localhost:8080/auth/signup",{
+//     "username": "eugeneiq",
+//     "email": "eugeneiq@gmail.com",
+//     "password": "1234"
+//   })
+  const handleSubmitRegistration = async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try{
+        axios.post("http://localhost:8080/auth/signup",{
+        "username": username,
+        "email": email,
+        "password": hashPassword
+  })
+    } catch(error){
+      console.log(error);
+    }
+  }
+//   console.log(hello);
   // const [login] = useMutation(LOGIN, {
   //   variables: { email, hashPassword }
   // });
@@ -70,40 +89,7 @@ export const Login = () => {
           });
     }
     if (name === "username") {
-      setState({[name]: value});
-  }
-  };
-
-  const handleSubmitLogin = async(e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try{
-        axios.post("http://localhost:8080/auth/signin",{
-        "username": username,
-        "email": email,
-        "password": hashPassword
-  })
-    } catch(error){
-      console.log(error);
-    }
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      // const { data } = await login();
-      // setCookies("access-token", data.login.accessToken);
-      // setCookies("refresh-token", data.login.refreshToken);
-      // if (data.login.role === "admin") {
-      //   setState({
-      //     isLoged: true
-      //   });
-      // }
-    } catch (error) {
-      console.log(error);
-      setState({
-        isLoged: false,
-        errorMessage: "Incorrect email or password",
-      });
+        setState({[name]: value});
     }
   };
 
@@ -111,8 +97,8 @@ export const Login = () => {
     <Redirect to="/users" />
   ) : (
     <Overlap>
-      <LoginForm onSubmit={handleSubmitLogin}>
-        <Title>Login</Title>
+      <LoginForm onSubmit={handleSubmitRegistration}>
+        <Title>Registration</Title>
         <InputSection
           placeholder="email"
           type="email"
