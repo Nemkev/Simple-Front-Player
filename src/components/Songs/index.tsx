@@ -1,6 +1,5 @@
-import React, { useReducer, useState } from "react";
-import { stylePreset } from "../../helpers/modalStyle";
-import Modal from "react-modal";
+import React, { useReducer, useState, useEffect } from "react";
+import axios from "axios";
 import ReactHlsPlayer from "react-hls-player";
 
 import { Overlap, ListItem, SearchList } from "./songs.style";
@@ -12,22 +11,41 @@ const simpleData = [
   { name: "Java", author: "Developer" },
 ];
 
+// const songs = await axios.get('http://localhost:8080/api/tracks').then(resp => resp.data.data);
+
 export const Songs = () => {
+
+  const [
+    {
+      listOfsongs
+    },
+    setState,
+  ] = useReducer(
+    (s, a) => ({
+      ...s,
+      ...a,
+    }),
+    {
+      listOfsongs: [],
+    }
+  );
+
+  useEffect(()=>{
+    const getSongs = async() => {
+      const songs = await axios.get('http://localhost:8080/api/tracks');
+      console.log("songs",songs.data.data)
+      setState({listOfsongs:songs.data.data})
+    };
+    getSongs()
+  },[])
   return (
     <Overlap>
       <SearchList>
-        {simpleData.map((item: any) => (
-          <ListItem>
-            <p>{item.name}</p>
-            <p>{item.author}</p>
-            <ReactHlsPlayer
-              url='https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
-              autoplay={false}
-              controls={true}
-              width="100%"
-              height="auto"
-/>
-          </ListItem>
+        {listOfsongs && listOfsongs.map((item:any)=>(
+          <>
+          <p>{item.trackTitle}</p>
+          <p>{item.artistName}</p>
+          </>
         ))}
       </SearchList>
     </Overlap>
