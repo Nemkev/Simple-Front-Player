@@ -45,6 +45,12 @@ export const Songs = () => {
           <>
           <p>{item.trackTitle}</p>
           <p>{item.artistName}</p>
+          <ReactHlsPlayer 
+          url={`http://localhost:8080/media/${item.trackId}/stream/`}
+          autoplay={false}
+          controls={true}
+          width={300}
+          height={100}/>
           </>
         ))}
       </SearchList>

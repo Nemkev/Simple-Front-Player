@@ -3,6 +3,10 @@ import styles from "./player.module.scss";
 import { HLSAudioPlayer } from "../Player";
 import { HLSSourceForm } from "../LoadForm";
 
+// interface Props {
+//   hlsSource: string;
+// }
+
 export const ListenPlayer = () => {
   const [hlsSource, setHlsSource] = useState("");
 
