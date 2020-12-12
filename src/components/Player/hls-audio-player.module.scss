@@ -1,0 +1,121 @@
+.hlsAudioPlayer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .leftControls {
+    .playPauseButton {
+      width: 16px;
+      height: 16px;
+      margin-bottom: 18px;
+      margin-right: 16px;
+    }
+  }
+
+  .rangeInput {
+    position: absolute;
+    top: -6px;
+    width: 100%;
+    opacity: 0;
+  }
+
+  .progressWrapper {
+    position: relative;
+    height: 8px;
+    width: 100%;
+
+    &:hover {
+      .progressThumb {
+        opacity: 0.8;
+      }
+    }
+
+    .timeline {
+      position: absolute;
+      background-color: #777;
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+    }
+
+    .progressLine {
+      position: absolute;
+      background-color: #000;
+      height: 8px;
+      border-radius: 10px;
+    }
+
+    .progressThumb {
+      position: absolute;
+      background-color: black;
+      width: 12px;
+      height: 12px;
+      border: 2px solid rgba(0, 0, 0, 0);
+      top: -4px;
+      border-radius: 10px;
+      opacity: 0;
+    }
+  }
+
+  .volumeControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8px;
+
+    &:hover {
+      width: 15%;
+    }
+
+    .volumeWrapper {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        .volumeThumb {
+          opacity: 0.8;
+        }
+      }
+
+      .rangeInput {
+        top: -10px;
+      }
+
+      .volumeLine {
+        position: absolute;
+        background-color: #777;
+        width: 100%;
+        height: 8px;
+        border-radius: 10px;
+      }
+
+      .volumeLevelLine {
+        position: absolute;
+        background-color: #000;
+        height: 8px;
+        border-radius: 10px;
+      }
+
+      .volumeThumb {
+        position: absolute;
+        background-color: black;
+        width: 12px;
+        height: 12px;
+        border: 2px solid rgba(0, 0, 0, 0);
+        top: -8px;
+        border-radius: 10px;
+        opacity: 0;
+      }
+    }
+
+    .volumeButton {
+      width: 16px;
+      height: 16px;
+      margin-bottom: 12px;
+      margin-left: 8px;
+    }
+  }
+}

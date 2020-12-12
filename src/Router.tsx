@@ -4,6 +4,7 @@ import { Login } from "./components/Login";
 import { Songs } from "./components/Songs";
 import { Registration } from "./components/Registration";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { ListenPlayer } from "./components/FullPlayer";
 
 import { Wrapper } from "./app.style";
 
@@ -14,7 +15,8 @@ export const Routers = () => {
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/songs" component={Songs} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/registration" component={Registration}/>
+        <Route exact path="/player" component={ListenPlayer} />
+        <Route exact path="/registration" component={Registration} />
         <Redirect from="/" to="login" />
       </Switch>
     </Wrapper>
